@@ -276,9 +276,9 @@ export default function TechPage() {
               className="bg-white text-primary hover:bg-white/90 rounded-full text-xl px-12 py-8 shadow-2xl font-bold hover:scale-110 transition-all"
               asChild
             >
-              <a href="https://testflight.apple.com/join/8jZ2GuxV" target="_blank" rel="noopener noreferrer">
+              <Link href="/download">
                 {t("tech.cta.button")}
-              </a>
+              </Link>
             </Button>
           </div>
         </ScrollReveal>

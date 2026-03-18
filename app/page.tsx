@@ -45,9 +45,9 @@ export default function TubestrLanding() {
                 className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-primary-foreground rounded-full text-xl px-10 py-7 shadow-2xl hover:shadow-3xl transition-all hover:scale-105 font-bold"
                 asChild
               >
-                <a href="https://testflight.apple.com/join/8jZ2GuxV" target="_blank" rel="noopener noreferrer">
+                <Link href="/download">
                   {t("hero.joinBeta")} 🎉
-                </a>
+                </Link>
               </Button>
               <Button
                 size="lg"
@@ -516,9 +516,9 @@ export default function TubestrLanding() {
                 className="bg-white text-primary hover:bg-white/90 rounded-full text-xl px-12 py-8 shadow-2xl hover:shadow-3xl transition-all font-bold hover:scale-110"
                 asChild
               >
-                <a href="https://testflight.apple.com/join/8jZ2GuxV" target="_blank" rel="noopener noreferrer">
+                <Link href="/download">
                   {t("join.beta")} 🚀
-                </a>
+                </Link>
               </Button>
               <Button
                 size="lg"

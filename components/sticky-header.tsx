@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { useI18n } from "@/lib/i18n-context"
 import { Globe } from "lucide-react"
+import Link from "next/link"
 
 export function StickyHeader() {
   const [isVisible, setIsVisible] = useState(false)
@@ -60,9 +61,9 @@ export function StickyHeader() {
             className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full shadow-lg text-xs md:text-sm px-3 md:px-4"
             asChild
           >
-            <a href="https://testflight.apple.com/join/8jZ2GuxV" target="_blank" rel="noopener noreferrer">
+            <Link href="/download">
               {t("hero.joinBeta")}
-            </a>
+            </Link>
           </Button>
         </div>
       </div>

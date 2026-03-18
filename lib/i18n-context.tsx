@@ -154,6 +154,25 @@ const translations: Record<Language, Record<string, string>> = {
     "join.beta": "Try Tubestr Free",
     "join.nostr": "Learn About Our Tech",
 
+    // Download Page
+    "download.badge": "Get the App",
+    "download.title": "Download Tubestr",
+    "download.subtitle": "We're in early beta — pick the option that works best for your device and let us know what you think.",
+    "download.testflight.platform": "iOS & iPadOS",
+    "download.testflight.title": "Apple TestFlight",
+    "download.testflight.desc": "The easiest way to try Tubestr on your iPhone or iPad. Install TestFlight first, then tap our link to join the beta.",
+    "download.testflight.button": "Open in TestFlight",
+    "download.zapstore.platform": "Android",
+    "download.zapstore.title": "Zapstore",
+    "download.zapstore.desc": "A privacy-respecting app store built on Nostr. If you're already in the Nostr world, this is the recommended way to install on Android.",
+    "download.zapstore.button": "Get on Zapstore",
+    "download.apk.platform": "Android",
+    "download.apk.title": "Direct APK",
+    "download.apk.desc": "Download the APK directly from our GitHub releases page. You'll need to allow installs from unknown sources in your Android settings.",
+    "download.apk.button": "Download APK",
+    "download.help": "Need help getting set up? Reach out to us — we're happy to walk you through it.",
+    "download.backHome": "Back to Home",
+
     // Footer
     "footer.copyright": "© 2025 Tubestr. Built with love for families.",
     "footer.tagline": "Safe by design • Parent-guided • Kid-approved",
@@ -338,6 +357,25 @@ const translations: Record<Language, Record<string, string>> = {
       "Déjalos expresarse sin el ruido de internet. Únete a nuestra beta y ayuda a dar forma al futuro de los medios familiares.",
     "join.beta": "Prueba Tubestr Gratis",
     "join.nostr": "Conoce Nuestra Tecnología",
+
+    // Download Page
+    "download.badge": "Obtén la App",
+    "download.title": "Descarga Tubestr",
+    "download.subtitle": "Estamos en beta temprana — elige la opción que mejor funcione para tu dispositivo y cuéntanos qué piensas.",
+    "download.testflight.platform": "iOS y iPadOS",
+    "download.testflight.title": "Apple TestFlight",
+    "download.testflight.desc": "La forma más fácil de probar Tubestr en tu iPhone o iPad. Instala TestFlight primero, luego toca nuestro enlace para unirte a la beta.",
+    "download.testflight.button": "Abrir en TestFlight",
+    "download.zapstore.platform": "Android",
+    "download.zapstore.title": "Zapstore",
+    "download.zapstore.desc": "Una tienda de apps que respeta la privacidad, construida sobre Nostr. Si ya estás en el mundo Nostr, esta es la forma recomendada de instalar en Android.",
+    "download.zapstore.button": "Obtener en Zapstore",
+    "download.apk.platform": "Android",
+    "download.apk.title": "APK Directo",
+    "download.apk.desc": "Descarga el APK directamente desde nuestra página de lanzamientos en GitHub. Necesitarás permitir instalaciones de fuentes desconocidas en tu configuración de Android.",
+    "download.apk.button": "Descargar APK",
+    "download.help": "¿Necesitas ayuda para configurarlo? Contáctanos — con gusto te guiamos.",
+    "download.backHome": "Volver al Inicio",
 
     // Footer
     "footer.copyright": "© 2025 Tubestr. Construido con amor para familias.",
