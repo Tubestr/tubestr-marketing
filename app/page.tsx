@@ -13,12 +13,11 @@ export default function TubestrLanding() {
   const { t, language } = useI18n()
 
   const screenshots = {
-    parentDashboard:
-      language === "en" ? "/images/da2af02f-d76d-4370-a0d1.png" : "/images/da2af02f-d76d-4370-a0d1_es.png", // TODO: Replace with Spanish screenshot
-    familyConnections:
-      language === "en" ? "/images/6f310a3c-f4d2-4dad-b8ff.png" : "/images/6f310a3c-f4d2-4dad-b8ff_es.png", // TODO: Replace with Spanish screenshot
-    editor: language === "en" ? "/images/f6f31fcf-3ad1-4a8e-8461.png" : "/images/f6f31fcf-3ad1-4a8e-8461_es.png", // TODO: Replace with Spanish screenshot
-    viewing: language === "en" ? "/images/c19007b4-494f-4d8a-ab47.png" : "/images/c19007b4-494f-4d8a-ab47_es.png", // TODO: Replace with Spanish screenshot
+    parentDashboard: "/images/IMG_0439.webp",
+    familyConnections: "/images/IMG_4223.webp",
+    editor: "/images/IMG_0438.webp",
+    viewing: "/images/IMG_0440.webp",
+    home: "/images/IMG_0437.webp",
   }
 
   return (
@@ -343,7 +342,7 @@ export default function TubestrLanding() {
               <div className="order-2 md:order-1 bg-gradient-to-br from-white to-green-50 rounded-[3rem] p-10 shadow-2xl border-3 border-accent/30 hover:shadow-3xl transition-all hover:-translate-y-2">
                 <div className="relative aspect-[19/9] rounded-3xl overflow-hidden shadow-2xl bg-gray-100 border-4 border-gray-800">
                   <Image
-                    src={screenshots.editor || "/placeholder.svg"}
+                    src={screenshots.home || "/placeholder.svg"}
                     alt={t("forKids.imageCaption")}
                     fill
                     className="object-contain"
