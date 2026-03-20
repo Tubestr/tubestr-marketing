@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { useI18n } from "@/lib/i18n-context"
-import { Globe } from "lucide-react"
+import { Globe, LifeBuoy } from "lucide-react"
 import Link from "next/link"
 
 export function StickyHeader() {
@@ -37,6 +37,13 @@ export function StickyHeader() {
           </a>
         </div>
         <div className="flex items-center gap-2 md:gap-4">
+          <Link
+            href="/support"
+            className="hidden sm:flex items-center gap-1.5 text-sm font-medium text-foreground/65 hover:text-primary transition-colors"
+          >
+            <LifeBuoy className="h-4 w-4" />
+            <span>{language === "en" ? "Support" : "Soporte"}</span>
+          </Link>
           <div className="flex items-center gap-1 md:gap-2 bg-white/50 rounded-full px-2 md:px-3 py-1.5 border border-primary/10">
             <Globe className="w-3 h-3 md:w-4 md:h-4 text-primary" />
             <Button

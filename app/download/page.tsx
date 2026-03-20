@@ -5,7 +5,7 @@ import { StickyHeader } from "@/components/sticky-header"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { useI18n } from "@/lib/i18n-context"
-import { Apple, ArrowUpRight, Download, Github, MessageCircleMore, Package, Shield } from "lucide-react"
+import { Apple, ArrowUpRight, Check, Download, Github, MessageCircleMore, Package, Shield } from "lucide-react"
 import Link from "next/link"
 
 const content = {
@@ -58,9 +58,20 @@ const content = {
       "Set up a child profile and start building the trusted family circle.",
       "Test recording, connection approval, and private sharing with real family members.",
     ],
-    legalTitle: "Need the launch and review links?",
+    betaExpectationsTitle: "What to expect in the beta",
+    betaExpectationsIntro:
+      "This is an active private beta, not a finished product. Some flows are still being tightened.",
+    betaExpectationsPoints: [
+      "Onboarding and parent approval work end-to-end, but some screens are still being refined.",
+      "Recording, basic editing, and sharing inside trusted circles are functional for most families.",
+      "You may hit rough edges in setup, invite flows, or playback — these are exactly what we need to hear about.",
+      "If a child-safety control behaves unexpectedly, flag it immediately — those reports go to the front of the queue.",
+    ],
+    betaExpectationsNote:
+      "We read every concrete report. The more specific — device, OS version, exact step, what you expected — the faster we can fix it.",
+    legalTitle: "Help, privacy, and terms",
     legalBody:
-      "Use these public URLs for TestFlight and App Store metadata while the beta is still private: support, privacy policy, and terms.",
+      "Support is here to help you through install, onboarding, and any privacy questions. These pages are also the official links for TestFlight and App Store submission.",
     legalLinks: [
       { label: "Support", href: "/support" },
       { label: "Privacy policy", href: "/privacy" },
@@ -122,9 +133,20 @@ const content = {
       "Configura un perfil infantil y comienza a construir el círculo familiar de confianza.",
       "Prueba grabación, aprobación de conexiones y compartición privada con familiares reales.",
     ],
-    legalTitle: "¿Necesitas los enlaces para launch y review?",
+    betaExpectationsTitle: "Qué esperar en la beta",
+    betaExpectationsIntro:
+      "Esta es una beta privada activa, no un producto terminado. Algunos flujos todavía se están ajustando.",
+    betaExpectationsPoints: [
+      "El onboarding y la aprobación parental funcionan de extremo a extremo, pero algunas pantallas todavía se están refinando.",
+      "Grabar, editar básico y compartir dentro de círculos de confianza funciona para la mayoría de familias.",
+      "Puedes encontrar puntos ásperos en la configuración, flujos de invitación o reproducción — eso es exactamente lo que necesitamos escuchar.",
+      "Si un control de seguridad infantil no funciona como esperas, reportalo de inmediato — esos reportes van al frente de la fila.",
+    ],
+    betaExpectationsNote:
+      "Leemos cada reporte concreto. Cuanto más específico — dispositivo, versión de OS, paso exacto, qué esperabas — más rápido podemos corregirlo.",
+    legalTitle: "Ayuda, privacidad y términos",
     legalBody:
-      "Usa estas URLs públicas para los metadatos de TestFlight y App Store mientras la beta sigue privada: soporte, política de privacidad y términos.",
+      "El soporte está aquí para ayudarte con la instalación, el onboarding y cualquier pregunta de privacidad. Estas páginas también son los enlaces oficiales para TestFlight y App Store.",
     legalLinks: [
       { label: "Soporte", href: "/support" },
       { label: "Política de privacidad", href: "/privacy" },
@@ -259,6 +281,30 @@ export default function DownloadPage() {
                 </div>
               </CardContent>
             </Card>
+          </div>
+        </ScrollReveal>
+      </section>
+
+      <section className="container mx-auto px-4 py-8 md:py-12">
+        <ScrollReveal>
+          <div className="mx-auto max-w-6xl rounded-[2.5rem] border border-amber-200/60 bg-amber-50/60 p-8 shadow-lg md:p-10">
+            <div className="space-y-5">
+              <h2 className="text-3xl font-bold text-primary font-[family-name:var(--font-display)]">
+                {copy.betaExpectationsTitle}
+              </h2>
+              <p className="text-base leading-7 text-foreground/75">{copy.betaExpectationsIntro}</p>
+              <div className="space-y-3">
+                {copy.betaExpectationsPoints.map((point) => (
+                  <div key={point} className="flex items-start gap-4 rounded-2xl bg-white/70 px-5 py-4">
+                    <div className="mt-0.5 h-5 w-5 flex-shrink-0 rounded-full bg-amber-400/80 text-white flex items-center justify-center">
+                      <Check className="h-3 w-3" />
+                    </div>
+                    <p className="text-base leading-7 text-foreground/80">{point}</p>
+                  </div>
+                ))}
+              </div>
+              <p className="text-sm leading-6 text-foreground/60 italic">{copy.betaExpectationsNote}</p>
+            </div>
           </div>
         </ScrollReveal>
       </section>
