@@ -83,7 +83,7 @@ const content = {
       {
         title: "Trusted circles",
         body: "Children share with people their parents have explicitly allowed.",
-        image: "/images/IMG_4223.webp",
+        image: "/images/IMG_0437.webp",
       },
       {
         title: "Creation tools",
@@ -187,7 +187,7 @@ const content = {
       {
         title: "Círculos de confianza",
         body: "Los niños comparten con personas que sus padres permitieron explícitamente.",
-        image: "/images/IMG_4223.webp",
+        image: "/images/IMG_0437.webp",
       },
       {
         title: "Herramientas creativas",
@@ -307,58 +307,61 @@ export default function TubestrLanding() {
             <div className="relative">
               <div className="absolute -inset-6 rounded-[2.5rem] bg-gradient-to-br from-primary/15 via-white to-accent/15 blur-2xl" />
               <div className="relative overflow-hidden rounded-[2rem] border border-white/70 bg-white/85 p-4 shadow-[0_30px_80px_-40px_rgba(17,24,39,0.45)] backdrop-blur">
-                <div className="grid gap-4 md:grid-cols-[1.05fr_0.95fr]">
-                  <div className="rounded-[1.5rem] bg-slate-950 p-3">
-                    <div className="relative aspect-[9/19] overflow-hidden rounded-[1.25rem] bg-slate-900">
-                      <Image src="/images/IMG_0437.webp" alt="Tubestr home feed" fill className="object-cover" />
+                <div className="space-y-3">
+                  {/* iPad mini landscape mockup */}
+                  <div className="relative">
+                    <div className="rounded-[1rem] bg-slate-950 p-[6px] shadow-[0_22px_50px_-24px_rgba(15,23,42,0.8)] ring-1 ring-white/20">
+                      <div className="relative aspect-[3/2] overflow-hidden rounded-[0.6rem] bg-slate-900">
+                        <div className="absolute right-2.5 top-1/2 z-10 h-2 w-2 -translate-y-1/2 rounded-full bg-slate-700/80" />
+                        <Image src="/images/IMG_0437.webp" alt="Tubestr home feed" fill className="object-cover" />
+                      </div>
                     </div>
+                    <div className="absolute -top-[3px] right-1/3 h-[3px] w-6 rounded-full bg-white/55" />
                   </div>
-                  <div className="flex flex-col gap-4">
+                  <div className="flex flex-col gap-2">
                     <Card className="border-primary/15 bg-blue-50/80 shadow-sm">
-                      <CardContent className="space-y-3 p-5">
+                      <CardContent className="space-y-2 p-4">
                         <div className="flex items-center gap-3">
-                          <Users className="h-5 w-5 text-primary" />
-                          <p className="font-semibold text-primary">
+                          <Users className="h-4 w-4 text-primary" />
+                          <p className="text-sm font-semibold text-primary">
                             {language === "en" ? "Trusted family circle" : "Círculo familiar de confianza"}
                           </p>
                         </div>
-                        <p className="text-sm leading-6 text-foreground/75">
+                        <p className="text-xs leading-5 text-foreground/75">
                           {language === "en"
                             ? "Parent-approved contacts before a child ever shares."
                             : "Contactos aprobados por padres antes de que un niño comparta."}
                         </p>
                       </CardContent>
                     </Card>
-                    <Card className="border-accent/15 bg-emerald-50/80 shadow-sm">
-                      <CardContent className="space-y-3 p-5">
-                        <div className="flex items-center gap-3">
-                          <EyeOff className="h-5 w-5 text-accent" />
-                          <p className="font-semibold text-primary">
-                            {language === "en" ? "No public audience" : "Sin audiencia pública"}
+                    <div className="grid grid-cols-2 gap-2">
+                      <Card className="border-accent/15 bg-emerald-50/80 shadow-sm">
+                        <CardContent className="space-y-2 p-4">
+                          <div className="flex items-center gap-2">
+                            <EyeOff className="h-4 w-4 text-accent" />
+                            <p className="text-xs font-semibold text-primary">
+                              {language === "en" ? "No public audience" : "Sin audiencia pública"}
+                            </p>
+                          </div>
+                          <p className="text-xs leading-5 text-foreground/75">
+                            {language === "en" ? "No feed of strangers." : "Sin feed de desconocidos."}
                           </p>
-                        </div>
-                        <p className="text-sm leading-6 text-foreground/75">
-                          {language === "en"
-                            ? "Kids post to real people they know, not a feed of strangers."
-                            : "Los niños publican para personas reales que conocen, no para un feed de desconocidos."}
-                        </p>
-                      </CardContent>
-                    </Card>
-                    <Card className="border-amber-200 bg-amber-50/80 shadow-sm">
-                      <CardContent className="space-y-3 p-5">
-                        <div className="flex items-center gap-3">
-                          <Sparkles className="h-5 w-5 text-amber-500" />
-                          <p className="font-semibold text-primary">
-                            {language === "en" ? "Creation first" : "Primero crear"}
+                        </CardContent>
+                      </Card>
+                      <Card className="border-amber-200 bg-amber-50/80 shadow-sm">
+                        <CardContent className="space-y-2 p-4">
+                          <div className="flex items-center gap-2">
+                            <Sparkles className="h-4 w-4 text-amber-500" />
+                            <p className="text-xs font-semibold text-primary">
+                              {language === "en" ? "Creation first" : "Primero crear"}
+                            </p>
+                          </div>
+                          <p className="text-xs leading-5 text-foreground/75">
+                            {language === "en" ? "Make, don't scroll." : "Crear, no deslizar."}
                           </p>
-                        </div>
-                        <p className="text-sm leading-6 text-foreground/75">
-                          {language === "en"
-                            ? "The camera and sharing flow encourage making, not doomscrolling."
-                            : "La cámara y el flujo de compartir fomentan crear, no deslizar sin fin."}
-                        </p>
-                      </CardContent>
-                    </Card>
+                        </CardContent>
+                      </Card>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -470,21 +473,18 @@ export default function TubestrLanding() {
                     key={card.title}
                     className={`overflow-hidden border-white/60 bg-gradient-to-br ${tone.shell} shadow-[0_28px_70px_-40px_rgba(15,23,42,0.45)]`}
                   >
-                    <div className="relative p-6 pb-3">
-                      <div className={`absolute inset-x-8 top-6 h-36 rounded-full bg-gradient-to-br ${tone.glow} blur-3xl`} />
-                      <div className="relative mx-auto flex max-w-[15rem] justify-center">
-                        <div className="w-full rounded-[2.2rem] bg-slate-950 p-[10px] shadow-[0_22px_50px_-24px_rgba(15,23,42,0.8)] ring-1 ring-white/20">
-                          <div className="rounded-[1.8rem] bg-slate-950 p-2">
-                            <div className="relative aspect-[9/19] overflow-hidden rounded-[1.45rem] border border-slate-800 bg-slate-900">
-                              <div className="absolute left-1/2 top-3 z-10 h-6 w-24 -translate-x-1/2 rounded-full bg-slate-950/95 shadow-md" />
-                              <Image src={card.image} alt={card.title} fill className="object-cover object-top" />
-                            </div>
+                    <div className="relative p-4 pb-3">
+                      <div className={`absolute inset-x-4 top-4 h-24 rounded-full bg-gradient-to-br ${tone.glow} blur-3xl`} />
+                      <div className="relative">
+                        <div className="rounded-[1rem] bg-slate-950 p-[5px] shadow-[0_22px_50px_-24px_rgba(15,23,42,0.8)] ring-1 ring-white/20">
+                          <div className="relative aspect-[3/2] overflow-hidden rounded-[0.6rem] border border-slate-800 bg-slate-900">
+                            <div className="absolute right-2 top-1/2 z-10 h-1.5 w-1.5 -translate-y-1/2 rounded-full bg-slate-700/80" />
+                            <Image src={card.image} alt={card.title} fill className="object-cover" />
                           </div>
                         </div>
-                        <div className="absolute -left-3 top-20 h-14 w-1 rounded-full bg-white/70" />
-                        <div className="absolute -right-3 top-24 h-20 w-1 rounded-full bg-white/70" />
+                        <div className="absolute -top-[3px] right-1/3 h-[3px] w-5 rounded-full bg-white/55" />
                         <div
-                          className={`absolute -bottom-4 right-0 rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] shadow-lg ${tone.chip}`}
+                          className={`absolute -bottom-3 right-0 rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] shadow-lg ${tone.chip}`}
                         >
                           {language === "en" ? "Mockup" : "Mockup"}
                         </div>
