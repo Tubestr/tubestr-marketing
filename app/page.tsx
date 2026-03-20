@@ -71,8 +71,9 @@ const content = {
         body: "Once approved, kids can post short videos to people the family already knows and trusts.",
       },
     ],
-    screenshotTitle: "Real product screens, not abstract promises",
-    screenshotSubtitle: "Parents can inspect the controls. Kids still get a playful camera and sharing experience.",
+    screenshotTitle: "Product mockups built from the real app",
+    screenshotSubtitle:
+      "We reframed the live screens inside clearer device mockups so parents can scan the experience faster without losing product truth.",
     screenshotCards: [
       {
         title: "Parent Zone",
@@ -174,8 +175,9 @@ const content = {
         body: "Una vez aprobado, el niño puede publicar videos cortos para personas que la familia ya conoce y en quienes confía.",
       },
     ],
-    screenshotTitle: "Pantallas reales del producto, no promesas abstractas",
-    screenshotSubtitle: "Los padres pueden inspeccionar los controles. Los niños siguen teniendo una cámara y experiencia de compartir divertida.",
+    screenshotTitle: "Mockups del producto construidos con la app real",
+    screenshotSubtitle:
+      "Reencuadramos las pantallas reales dentro de mockups más claros para que los padres entiendan la experiencia más rápido sin perder verdad del producto.",
     screenshotCards: [
       {
         title: "Zona Parental",
@@ -226,6 +228,29 @@ const content = {
     finalSecondary: "Leer la base técnica de confianza",
   },
 } as const
+
+const mockupTones = [
+  {
+    shell: "from-sky-100 via-white to-blue-50",
+    glow: "from-primary/25 via-primary/8 to-transparent",
+    chip: "bg-blue-100 text-blue-700",
+  },
+  {
+    shell: "from-emerald-100 via-white to-teal-50",
+    glow: "from-emerald-400/20 via-emerald-200/10 to-transparent",
+    chip: "bg-emerald-100 text-emerald-700",
+  },
+  {
+    shell: "from-amber-100 via-white to-rose-50",
+    glow: "from-amber-300/20 via-orange-100/10 to-transparent",
+    chip: "bg-amber-100 text-amber-700",
+  },
+  {
+    shell: "from-violet-100 via-white to-fuchsia-50",
+    glow: "from-violet-300/20 via-fuchsia-100/10 to-transparent",
+    chip: "bg-violet-100 text-violet-700",
+  },
+] as const
 
 export default function TubestrLanding() {
   const { language, t } = useI18n()
@@ -438,21 +463,42 @@ export default function TubestrLanding() {
               <p className="text-lg leading-8 text-foreground/75">{copy.screenshotSubtitle}</p>
             </div>
             <div className="grid gap-6 lg:grid-cols-2 xl:grid-cols-4">
-              {copy.screenshotCards.map((card) => (
-                <Card key={card.title} className="overflow-hidden border-white/60 bg-white/88 shadow-lg">
-                  <div className="relative aspect-[9/19] bg-slate-950 p-3">
-                    <div className="relative h-full overflow-hidden rounded-[1.5rem]">
-                      <Image src={card.image} alt={card.title} fill className="object-cover" />
+              {copy.screenshotCards.map((card, index) => {
+                const tone = mockupTones[index % mockupTones.length]
+                return (
+                  <Card
+                    key={card.title}
+                    className={`overflow-hidden border-white/60 bg-gradient-to-br ${tone.shell} shadow-[0_28px_70px_-40px_rgba(15,23,42,0.45)]`}
+                  >
+                    <div className="relative p-6 pb-3">
+                      <div className={`absolute inset-x-8 top-6 h-36 rounded-full bg-gradient-to-br ${tone.glow} blur-3xl`} />
+                      <div className="relative mx-auto flex max-w-[15rem] justify-center">
+                        <div className="w-full rounded-[2.2rem] bg-slate-950 p-[10px] shadow-[0_22px_50px_-24px_rgba(15,23,42,0.8)] ring-1 ring-white/20">
+                          <div className="rounded-[1.8rem] bg-slate-950 p-2">
+                            <div className="relative aspect-[9/19] overflow-hidden rounded-[1.45rem] border border-slate-800 bg-slate-900">
+                              <div className="absolute left-1/2 top-3 z-10 h-6 w-24 -translate-x-1/2 rounded-full bg-slate-950/95 shadow-md" />
+                              <Image src={card.image} alt={card.title} fill className="object-cover object-top" />
+                            </div>
+                          </div>
+                        </div>
+                        <div className="absolute -left-3 top-20 h-14 w-1 rounded-full bg-white/70" />
+                        <div className="absolute -right-3 top-24 h-20 w-1 rounded-full bg-white/70" />
+                        <div
+                          className={`absolute -bottom-4 right-0 rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] shadow-lg ${tone.chip}`}
+                        >
+                          {language === "en" ? "Mockup" : "Mockup"}
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                  <CardContent className="space-y-3 p-6">
-                    <h3 className="text-2xl font-bold text-primary font-[family-name:var(--font-display)]">
-                      {card.title}
-                    </h3>
-                    <p className="text-base leading-7 text-foreground/75">{card.body}</p>
-                  </CardContent>
-                </Card>
-              ))}
+                    <CardContent className="space-y-3 px-6 pb-6 pt-3">
+                      <h3 className="text-2xl font-bold text-primary font-[family-name:var(--font-display)]">
+                        {card.title}
+                      </h3>
+                      <p className="text-base leading-7 text-foreground/75">{card.body}</p>
+                    </CardContent>
+                  </Card>
+                )
+              })}
             </div>
           </div>
         </ScrollReveal>
