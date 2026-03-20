@@ -11,6 +11,7 @@ const sections = [
     title: "How to get help",
     paragraphs: [
       "Tubestr is in private beta, so the fastest support path is a concrete bug report with the device, OS version, and exact step that failed.",
+      "For account deletion, start inside the app at Parent Zone -> Account -> Delete Parent Account. Use support if that flow fails or if you need help with a privacy request that goes beyond the in-app deletion path.",
     ],
     bullets: [
       "Product bugs and install issues: https://github.com/Tubestr/tubestr-v2/issues/new",

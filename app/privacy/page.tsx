@@ -52,8 +52,10 @@ const sections = [
     title: "Retention and deletion",
     paragraphs: [
       "Child profiles and local media stored on a device can be removed by the parent inside the app. Copies already delivered to approved family contacts may remain available on those recipient devices or storage providers until those parties delete them.",
+      "When Tubestr is operating with Tubestr-managed backend account records, the app includes an in-app parent account deletion flow in Parent Zone -> Account. That flow removes the account records Tubestr stores for the parent address and then signs the device out.",
       "Operational logs, encrypted blobs, billing records, and abuse reports may be retained for as long as needed to run the service, resolve disputes, enforce safety controls, comply with law, or protect the platform.",
-      "If you need a deletion or privacy request handled for beta use, contact us through the support page and include enough detail to identify the family account involved.",
+      "Deleting the Tubestr account does not automatically cancel an Apple App Store or Google Play subscription. Subscription cancellation still follows the billing provider's own account-management flow.",
+      "If you need a privacy or deletion request beyond what the in-app flow removes, contact us through the support page and include enough detail to identify the family account involved.",
     ],
   },
   {
