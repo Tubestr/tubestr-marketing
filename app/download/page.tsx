@@ -1,154 +1,331 @@
 "use client"
 
+import { ScrollReveal } from "@/components/scroll-reveal"
+import { StickyHeader } from "@/components/sticky-header"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { useI18n } from "@/lib/i18n-context"
-import { ScrollReveal } from "@/components/scroll-reveal"
-import { StickyHeader } from "@/components/sticky-header"
-import { Apple, Download, Package } from "lucide-react"
+import { Apple, ArrowUpRight, Download, Github, MessageCircleMore, Package, Shield } from "lucide-react"
 import Link from "next/link"
 
+const content = {
+  en: {
+    badge: "Tubestr beta install",
+    title: "Choose the easiest install path for your family’s device.",
+    subtitle:
+      "Tubestr is in private beta for parents testing the app with their kids. Install on iPhone or Android, then tell us where the setup or sharing flow still feels rough.",
+    cards: [
+      {
+        platform: "iOS and iPadOS",
+        title: "Apple TestFlight",
+        body: "Best for most families on Apple devices. Install TestFlight first, then join the beta from Apple’s standard preview flow.",
+        detail: "What to expect: fastest onboarding path, easiest updates, good for parent-led household testing.",
+        cta: "Open TestFlight",
+        href: "https://testflight.apple.com/join/8jZ2GuxV",
+        icon: Apple,
+        tone: "blue",
+      },
+      {
+        platform: "Android",
+        title: "Zapstore",
+        body: "Recommended if you are already comfortable with the Nostr ecosystem and want a straightforward Android app-store install.",
+        detail: "What to expect: cleaner Android install path if Zapstore is already part of your setup.",
+        cta: "Open Zapstore",
+        href: "https://zapstore.dev/apps/app.tubestr.mobile",
+        icon: Package,
+        tone: "purple",
+      },
+      {
+        platform: "Android",
+        title: "Direct APK",
+        body: "Use this if you want the release artifact directly. Android will ask you to allow installs from unknown sources.",
+        detail: "What to expect: most flexible path, but also the most manual one.",
+        cta: "View GitHub releases",
+        href: "https://github.com/Tubestr/tubestr-v2/releases",
+        icon: Download,
+        tone: "green",
+      },
+    ],
+    betaTitle: "Who this beta is for",
+    betaPoints: [
+      "Parents testing Tubestr with children in real family sharing scenarios",
+      "Families comfortable trying early product flows and reporting friction",
+      "Households that want private video sharing instead of a public audience",
+    ],
+    afterTitle: "What happens after install",
+    afterSteps: [
+      "Open the app and create or recover the parent identity.",
+      "Set up a child profile and start building the trusted family circle.",
+      "Test recording, connection approval, and private sharing with real family members.",
+    ],
+    legalTitle: "Need the launch and review links?",
+    legalBody:
+      "Use these public URLs for TestFlight and App Store metadata while the beta is still private: support, privacy policy, and terms.",
+    legalLinks: [
+      { label: "Support", href: "/support" },
+      { label: "Privacy policy", href: "/privacy" },
+      { label: "Terms of use", href: "/terms" },
+    ],
+    feedbackTitle: "Need help or want to send feedback?",
+    feedbackBody:
+      "The beta is still being tightened. If install, onboarding, or sharing gets confusing, send us a concrete report so we can fix the right thing next.",
+    feedbackPrimary: "Open feedback issue",
+    feedbackSecondary: "Back to home",
+    feedbackHref: "https://github.com/Tubestr/tubestr-v2/issues/new",
+  },
+  es: {
+    badge: "Instalación beta de Tubestr",
+    title: "Elige la ruta de instalación más simple para el dispositivo de tu familia.",
+    subtitle:
+      "Tubestr está en beta privada para padres que prueban la app con sus hijos. Instálala en iPhone o Android y cuéntanos dónde la configuración o el flujo de compartir todavía se siente áspero.",
+    cards: [
+      {
+        platform: "iOS y iPadOS",
+        title: "Apple TestFlight",
+        body: "La mejor opción para la mayoría de familias con dispositivos Apple. Instala TestFlight primero y luego entra a la beta con el flujo estándar de Apple.",
+        detail: "Qué esperar: ruta de inicio más rápida, actualizaciones sencillas, ideal para pruebas dirigidas por padres.",
+        cta: "Abrir TestFlight",
+        href: "https://testflight.apple.com/join/8jZ2GuxV",
+        icon: Apple,
+        tone: "blue",
+      },
+      {
+        platform: "Android",
+        title: "Zapstore",
+        body: "Recomendado si ya te sientes cómodo con el ecosistema Nostr y quieres una instalación de Android más parecida a una tienda.",
+        detail: "Qué esperar: una ruta más limpia en Android si ya usas Zapstore.",
+        cta: "Abrir Zapstore",
+        href: "https://zapstore.dev/apps/app.tubestr.mobile",
+        icon: Package,
+        tone: "purple",
+      },
+      {
+        platform: "Android",
+        title: "APK directo",
+        body: "Úsalo si quieres el artefacto de release directamente. Android te pedirá permitir instalaciones desde fuentes desconocidas.",
+        detail: "Qué esperar: la ruta más flexible, pero también la más manual.",
+        cta: "Ver releases en GitHub",
+        href: "https://github.com/Tubestr/tubestr-v2/releases",
+        icon: Download,
+        tone: "green",
+      },
+    ],
+    betaTitle: "Para quién es esta beta",
+    betaPoints: [
+      "Padres probando Tubestr con niños en escenarios reales de compartición familiar",
+      "Familias dispuestas a probar flujos tempranos y reportar fricción",
+      "Hogares que quieren compartir videos en privado en lugar de exponerlos al público",
+    ],
+    afterTitle: "Qué pasa después de instalar",
+    afterSteps: [
+      "Abre la app y crea o recupera la identidad parental.",
+      "Configura un perfil infantil y comienza a construir el círculo familiar de confianza.",
+      "Prueba grabación, aprobación de conexiones y compartición privada con familiares reales.",
+    ],
+    legalTitle: "¿Necesitas los enlaces para launch y review?",
+    legalBody:
+      "Usa estas URLs públicas para los metadatos de TestFlight y App Store mientras la beta sigue privada: soporte, política de privacidad y términos.",
+    legalLinks: [
+      { label: "Soporte", href: "/support" },
+      { label: "Política de privacidad", href: "/privacy" },
+      { label: "Términos de uso", href: "/terms" },
+    ],
+    feedbackTitle: "¿Necesitas ayuda o quieres enviar feedback?",
+    feedbackBody:
+      "La beta todavía se está ajustando. Si instalar, el onboarding o compartir se vuelve confuso, envíanos un reporte concreto para corregir lo correcto primero.",
+    feedbackPrimary: "Abrir issue de feedback",
+    feedbackSecondary: "Volver al inicio",
+    feedbackHref: "https://github.com/Tubestr/tubestr-v2/issues/new",
+  },
+} as const
+
+const toneClasses = {
+  blue: {
+    card: "border-primary/20 bg-blue-50/80",
+    chip: "bg-blue-100 text-blue-700",
+    button: "bg-primary text-primary-foreground hover:bg-primary/90",
+    icon: "bg-primary text-white",
+  },
+  purple: {
+    card: "border-purple-200 bg-purple-50/80",
+    chip: "bg-purple-100 text-purple-700",
+    button: "bg-purple-600 text-white hover:bg-purple-700",
+    icon: "bg-purple-600 text-white",
+  },
+  green: {
+    card: "border-emerald-200 bg-emerald-50/80",
+    chip: "bg-emerald-100 text-emerald-700",
+    button: "bg-emerald-600 text-white hover:bg-emerald-700",
+    icon: "bg-emerald-600 text-white",
+  },
+} as const
+
 export default function DownloadPage() {
-  const { t } = useI18n()
+  const { language, t } = useI18n()
+  const copy = content[language]
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 via-purple-50 to-green-50">
+    <div className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(59,130,246,0.16),_transparent_30%),linear-gradient(180deg,_#f8fbff_0%,_#eef6ff_35%,_#f6f7ec_100%)]">
       <StickyHeader />
 
-      {/* Hero */}
-      <section className="container mx-auto px-4 py-20 md:py-32">
+      <section className="container mx-auto px-4 pt-24 pb-14 md:pt-32 md:pb-20">
         <ScrollReveal>
-          <div className="max-w-3xl mx-auto text-center space-y-6">
-            <div className="inline-block px-6 py-3 bg-primary/10 rounded-full text-primary font-bold text-lg shadow-md">
-              {t("download.badge")}
+          <div className="mx-auto max-w-4xl space-y-6 text-center">
+            <div className="inline-flex items-center gap-2 rounded-full border border-primary/15 bg-white/90 px-5 py-2 text-sm font-semibold text-primary shadow-md">
+              <Shield className="h-4 w-4" />
+              <span>{copy.badge}</span>
             </div>
-            <h1 className="text-4xl md:text-6xl font-bold text-balance text-primary font-[family-name:var(--font-display)] leading-tight">
-              {t("download.title")}
+            <h1 className="text-5xl font-bold leading-[0.96] text-primary md:text-7xl font-[family-name:var(--font-display)]">
+              {copy.title}
             </h1>
-            <p className="text-lg md:text-xl text-foreground/80 text-balance max-w-xl mx-auto leading-relaxed">
-              {t("download.subtitle")}
-            </p>
+            <p className="mx-auto max-w-3xl text-lg leading-8 text-foreground/80 md:text-2xl">{copy.subtitle}</p>
           </div>
         </ScrollReveal>
       </section>
 
-      {/* Download Options */}
-      <section className="container mx-auto px-4 pb-20">
-        <div className="max-w-5xl mx-auto grid md:grid-cols-3 gap-8">
-
-          {/* TestFlight */}
-          <ScrollReveal delay={100}>
-            <Card className="border-3 border-primary/30 bg-gradient-to-br from-white to-blue-50 shadow-2xl hover:shadow-3xl transition-all duration-300 hover:-translate-y-2 h-full flex flex-col">
-              <CardContent className="p-10 space-y-6 flex flex-col flex-1">
-                <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center shadow-xl">
-                  <Apple className="w-10 h-10 text-white" />
-                </div>
-                <div className="flex-1 space-y-3">
-                  <div className="inline-block px-3 py-1 bg-blue-100 text-blue-700 text-sm font-bold rounded-full">
-                    {t("download.testflight.platform")}
-                  </div>
-                  <h2 className="text-2xl font-bold text-primary font-[family-name:var(--font-display)]">
-                    {t("download.testflight.title")}
-                  </h2>
-                  <p className="text-foreground/70 leading-relaxed">
-                    {t("download.testflight.desc")}
-                  </p>
-                </div>
-                <Button
-                  size="lg"
-                  className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-primary-foreground rounded-full text-lg py-6 shadow-xl font-bold transition-all hover:scale-105"
-                  asChild
-                >
-                  <a href="https://testflight.apple.com/join/8jZ2GuxV" target="_blank" rel="noopener noreferrer">
-                    <Apple className="w-5 h-5 mr-2" />
-                    {t("download.testflight.button")}
-                  </a>
-                </Button>
-              </CardContent>
-            </Card>
-          </ScrollReveal>
-
-          {/* Zapstore */}
-          <ScrollReveal delay={200}>
-            <Card className="border-3 border-purple-300 bg-gradient-to-br from-white to-purple-50 shadow-2xl hover:shadow-3xl transition-all duration-300 hover:-translate-y-2 h-full flex flex-col">
-              <CardContent className="p-10 space-y-6 flex flex-col flex-1">
-                <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center shadow-xl">
-                  <Package className="w-10 h-10 text-white" />
-                </div>
-                <div className="flex-1 space-y-3">
-                  <div className="inline-block px-3 py-1 bg-purple-100 text-purple-700 text-sm font-bold rounded-full">
-                    {t("download.zapstore.platform")}
-                  </div>
-                  <h2 className="text-2xl font-bold text-primary font-[family-name:var(--font-display)]">
-                    {t("download.zapstore.title")}
-                  </h2>
-                  <p className="text-foreground/70 leading-relaxed">
-                    {t("download.zapstore.desc")}
-                  </p>
-                </div>
-                <Button
-                  size="lg"
-                  className="w-full bg-gradient-to-r from-purple-500 to-purple-700 hover:from-purple-600 hover:to-purple-800 text-white rounded-full text-lg py-6 shadow-xl font-bold transition-all hover:scale-105"
-                  asChild
-                >
-                  <a href="https://zapstore.dev/apps/app.tubestr.mobile" target="_blank" rel="noopener noreferrer">
-                    <Package className="w-5 h-5 mr-2" />
-                    {t("download.zapstore.button")}
-                  </a>
-                </Button>
-              </CardContent>
-            </Card>
-          </ScrollReveal>
-
-          {/* Direct APK */}
-          <ScrollReveal delay={300}>
-            <Card className="border-3 border-accent/30 bg-gradient-to-br from-white to-green-50 shadow-2xl hover:shadow-3xl transition-all duration-300 hover:-translate-y-2 h-full flex flex-col">
-              <CardContent className="p-10 space-y-6 flex flex-col flex-1">
-                <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center shadow-xl">
-                  <Download className="w-10 h-10 text-white" />
-                </div>
-                <div className="flex-1 space-y-3">
-                  <div className="inline-block px-3 py-1 bg-green-100 text-green-700 text-sm font-bold rounded-full">
-                    {t("download.apk.platform")}
-                  </div>
-                  <h2 className="text-2xl font-bold text-primary font-[family-name:var(--font-display)]">
-                    {t("download.apk.title")}
-                  </h2>
-                  <p className="text-foreground/70 leading-relaxed">
-                    {t("download.apk.desc")}
-                  </p>
-                </div>
-                <Button
-                  size="lg"
-                  className="w-full bg-gradient-to-r from-accent to-accent/80 hover:from-accent/90 hover:to-accent/70 text-accent-foreground rounded-full text-lg py-6 shadow-xl font-bold transition-all hover:scale-105"
-                  asChild
-                >
-                  <a href="https://github.com/Tubestr/tubestr-v2/releases" target="_blank" rel="noopener noreferrer">
-                    <Download className="w-5 h-5 mr-2" />
-                    {t("download.apk.button")}
-                  </a>
-                </Button>
-              </CardContent>
-            </Card>
-          </ScrollReveal>
+      <section className="container mx-auto px-4 pb-14 md:pb-20">
+        <div className="mx-auto grid max-w-6xl gap-6 lg:grid-cols-3">
+          {copy.cards.map((card, index) => {
+            const tone = toneClasses[card.tone]
+            const Icon = card.icon
+            return (
+              <ScrollReveal key={card.title} delay={index * 120}>
+                <Card className={`h-full border ${tone.card} shadow-xl`}>
+                  <CardContent className="flex h-full flex-col space-y-6 p-8">
+                    <div className={`flex h-14 w-14 items-center justify-center rounded-2xl shadow-lg ${tone.icon}`}>
+                      <Icon className="h-7 w-7" />
+                    </div>
+                    <div className={`inline-flex w-fit rounded-full px-3 py-1 text-sm font-bold ${tone.chip}`}>
+                      {card.platform}
+                    </div>
+                    <div className="space-y-3">
+                      <h2 className="text-3xl font-bold text-primary font-[family-name:var(--font-display)]">
+                        {card.title}
+                      </h2>
+                      <p className="text-base leading-7 text-foreground/75">{card.body}</p>
+                      <p className="text-sm leading-6 text-foreground/65">{card.detail}</p>
+                    </div>
+                    <div className="mt-auto pt-2">
+                      <Button size="lg" className={`w-full rounded-full py-6 text-base font-bold ${tone.button}`} asChild>
+                        <a href={card.href} target="_blank" rel="noopener noreferrer">
+                          <Icon className="mr-2 h-5 w-5" />
+                          {card.cta}
+                        </a>
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              </ScrollReveal>
+            )
+          })}
         </div>
       </section>
 
-      {/* Help Note */}
-      <section className="container mx-auto px-4 pb-20">
+      <section className="container mx-auto px-4 py-8 md:py-12">
         <ScrollReveal>
-          <div className="max-w-2xl mx-auto bg-white/70 backdrop-blur rounded-3xl p-8 shadow-lg border border-primary/10 text-center space-y-4">
-            <p className="text-foreground/70 leading-relaxed text-lg">
-              {t("download.help")}
-            </p>
-            <Button variant="outline" className="border-2 border-primary/30 text-primary rounded-full" asChild>
-              <Link href="/">{t("download.backHome")}</Link>
-            </Button>
+          <div className="mx-auto grid max-w-6xl gap-6 md:grid-cols-2">
+            <Card className="border-white/70 bg-white/88 shadow-lg">
+              <CardContent className="space-y-5 p-8">
+                <h2 className="text-3xl font-bold text-primary font-[family-name:var(--font-display)]">
+                  {copy.betaTitle}
+                </h2>
+                <div className="space-y-4">
+                  {copy.betaPoints.map((point) => (
+                    <div key={point} className="flex items-start gap-4">
+                      <div className="mt-1 rounded-full bg-primary p-2 text-white">
+                        <Shield className="h-4 w-4" />
+                      </div>
+                      <p className="text-base leading-7 text-foreground/75">{point}</p>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="border-white/70 bg-white/88 shadow-lg">
+              <CardContent className="space-y-5 p-8">
+                <h2 className="text-3xl font-bold text-primary font-[family-name:var(--font-display)]">
+                  {copy.afterTitle}
+                </h2>
+                <div className="space-y-4">
+                  {copy.afterSteps.map((step, index) => (
+                    <div key={step} className="flex items-start gap-4">
+                      <div className="flex h-9 w-9 items-center justify-center rounded-full bg-accent text-sm font-bold text-white">
+                        {index + 1}
+                      </div>
+                      <p className="text-base leading-7 text-foreground/75">{step}</p>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </ScrollReveal>
       </section>
 
-      {/* Footer */}
+      <section className="container mx-auto px-4 py-8 md:py-12">
+        <ScrollReveal>
+          <div className="mx-auto max-w-6xl">
+            <Card className="border-white/70 bg-white/88 shadow-lg">
+              <CardContent className="space-y-5 p-8">
+                <h2 className="text-3xl font-bold text-primary font-[family-name:var(--font-display)]">
+                  {copy.legalTitle}
+                </h2>
+                <p className="max-w-3xl text-base leading-7 text-foreground/75">{copy.legalBody}</p>
+                <div className="flex flex-wrap gap-3">
+                  {copy.legalLinks.map((link) => (
+                    <Button
+                      key={link.href}
+                      variant="outline"
+                      className="rounded-full border-primary/20 bg-white text-primary hover:bg-primary/5"
+                      asChild
+                    >
+                      <Link href={link.href}>
+                        {link.label}
+                        <ArrowUpRight className="ml-2 h-4 w-4" />
+                      </Link>
+                    </Button>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </ScrollReveal>
+      </section>
+
+      <section className="container mx-auto px-4 py-14 md:py-20">
+        <ScrollReveal>
+          <div className="mx-auto max-w-4xl rounded-[2.5rem] bg-[linear-gradient(135deg,_#ffffff,_#eef6ff_48%,_#ecfdf5)] p-8 shadow-xl md:p-12">
+            <div className="space-y-5 text-center">
+              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                <MessageCircleMore className="h-7 w-7" />
+              </div>
+              <h2 className="text-4xl font-bold text-primary md:text-5xl font-[family-name:var(--font-display)]">
+                {copy.feedbackTitle}
+              </h2>
+              <p className="mx-auto max-w-2xl text-lg leading-8 text-foreground/75">{copy.feedbackBody}</p>
+            </div>
+            <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
+              <Button size="lg" className="rounded-full bg-primary px-8 py-7 text-base font-bold text-primary-foreground" asChild>
+                <a href={copy.feedbackHref} target="_blank" rel="noopener noreferrer">
+                  <Github className="mr-2 h-5 w-5" />
+                  {copy.feedbackPrimary}
+                  <ArrowUpRight className="ml-2 h-4 w-4" />
+                </a>
+              </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                className="rounded-full border-2 border-primary/15 bg-white px-8 py-7 text-base font-bold text-primary"
+                asChild
+              >
+                <Link href="/">{copy.feedbackSecondary}</Link>
+              </Button>
+            </div>
+          </div>
+        </ScrollReveal>
+      </section>
+
       <footer className="container mx-auto px-4 py-16 text-center text-foreground/60">
         <p className="text-lg font-bold">{t("footer.copyright")}</p>
         <p className="mt-3 text-base">{t("footer.tagline")}</p>
