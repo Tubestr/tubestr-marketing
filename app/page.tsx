@@ -1,541 +1,542 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Check, Shield, Users, Lock, Cloud, Key, Sparkles, Heart, Star, Smile, Zap } from "lucide-react"
-import Image from "next/image"
-import { useI18n } from "@/lib/i18n-context"
 import { ScrollReveal } from "@/components/scroll-reveal"
 import { StickyHeader } from "@/components/sticky-header"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
+import { useI18n } from "@/lib/i18n-context"
+import {
+  ArrowRight,
+  Check,
+  EyeOff,
+  KeyRound,
+  Lock,
+  Shield,
+  Sparkles,
+  Users,
+} from "lucide-react"
+import Image from "next/image"
 import Link from "next/link"
 
-export default function TubestrLanding() {
-  const { t, language } = useI18n()
+const content = {
+  en: {
+    badge: "Private family video beta",
+    title: "Let kids make and share videos without handing them the public internet.",
+    subtitle:
+      "Tubestr is the private video app for kids and parents. Kids create, parents approve every relationship, and videos stay inside trusted family circles.",
+    primaryCta: "Download the beta",
+    secondaryCta: "See how parent approval works",
+    proof: ["Parent-approved connections", "No public feed", "No ads or tracking", "Private by default"],
+    tensionTitle: "Parents already know the problem.",
+    tensionBody:
+      "Kids want to make videos for cousins, classmates, and grandparents. Most apps force parents to choose between unsafe public sharing and clunky family messaging. Tubestr is built for the space in between.",
+    tensionPoints: [
+      "Creation-first tools for kids instead of an attention feed",
+      "Every child relationship is approved by a parent before sharing starts",
+      "Family videos stay with trusted people, not a public audience",
+    ],
+    trustTitle: "Trust proof before install",
+    trustSubtitle: "The product promise is simple, and the controls are concrete.",
+    trustCards: [
+      {
+        title: "Parent approval on every relationship",
+        body: "Children do not add random followers. Parents decide which family and friends are allowed into a child’s circle.",
+      },
+      {
+        title: "No public audience to chase",
+        body: "There is no public feed, no creator leaderboard, and no algorithm pushing kids toward strangers.",
+      },
+      {
+        title: "No ads, no tracking incentives",
+        body: "Tubestr is not designed around attention capture. Kids make videos instead of being optimized into scrolling.",
+      },
+      {
+        title: "Private sharing built into the stack",
+        body: "Identity and sharing are built around family ownership and encrypted delivery, not ad-tech profiles.",
+      },
+    ],
+    approvalTitle: "How parent approval works",
+    approvalSubtitle: "One clear flow from setup to sharing.",
+    approvalSteps: [
+      {
+        title: "1. Set up a child profile",
+        body: "A parent creates the account, picks the child profile, and starts the trusted circle from the parent side.",
+      },
+      {
+        title: "2. Approve each connection",
+        body: "Parents review who the child can connect with before any sharing happens across families.",
+      },
+      {
+        title: "3. Kids create and share inside that circle",
+        body: "Once approved, kids can post short videos to people the family already knows and trusts.",
+      },
+    ],
+    screenshotTitle: "Real product screens, not abstract promises",
+    screenshotSubtitle: "Parents can inspect the controls. Kids still get a playful camera and sharing experience.",
+    screenshotCards: [
+      {
+        title: "Parent Zone",
+        body: "Connection approvals and family oversight live in one place.",
+        image: "/images/IMG_0439.webp",
+      },
+      {
+        title: "Trusted circles",
+        body: "Children share with people their parents have explicitly allowed.",
+        image: "/images/IMG_4223.webp",
+      },
+      {
+        title: "Creation tools",
+        body: "Kids record and remix instead of disappearing into a passive feed.",
+        image: "/images/IMG_0438.webp",
+      },
+      {
+        title: "Private playback",
+        body: "Shared videos are meant for family and friends, not the whole internet.",
+        image: "/images/IMG_0440.webp",
+      },
+    ],
+    compareTitle: "Where Tubestr fits",
+    compareSubtitle: "A clearer category picture for parents deciding what to trust.",
+    compareRows: [
+      {
+        label: "Primary experience",
+        values: ["Public viewing and discovery", "Social participation with moderation", "Chat and calls", "Private video creation and sharing"],
+      },
+      {
+        label: "Audience model",
+        values: ["Broad or platform-managed", "App-managed social graph", "Known contacts", "Parent-approved family circles"],
+      },
+      {
+        label: "Parent control",
+        values: ["Varies by mode", "Strong but product-wide", "Strong for messaging", "Built into every child relationship"],
+      },
+      {
+        label: "Business pressure",
+        values: ["Attention and content volume", "Engagement and retention", "Communication utility", "Family trust and safe creativity"],
+      },
+    ],
+    compareColumns: ["Public video apps", "Kids social apps", "Family messaging apps", "Tubestr"],
+    finalTitle: "A safer way to let kids share what they make.",
+    finalBody:
+      "Install the beta if you want a private family video app that treats parent approval as a product rule, not a settings page afterthought.",
+    finalPrimary: "Go to download",
+    finalSecondary: "Read the trust tech",
+  },
+  es: {
+    badge: "Beta privada de video familiar",
+    title: "Deja que los niños hagan y compartan videos sin entregarlos al internet público.",
+    subtitle:
+      "Tubestr es la app privada de video para niños y padres. Los niños crean, los padres aprueban cada relación y los videos permanecen dentro de círculos familiares de confianza.",
+    primaryCta: "Descargar la beta",
+    secondaryCta: "Ver cómo funciona la aprobación parental",
+    proof: ["Conexiones aprobadas por padres", "Sin feed público", "Sin anuncios ni rastreo", "Privado por defecto"],
+    tensionTitle: "Los padres ya conocen el problema.",
+    tensionBody:
+      "Los niños quieren hacer videos para primos, compañeros y abuelos. La mayoría de apps obliga a elegir entre compartir en público o usar mensajería familiar torpe. Tubestr está hecha para ese punto intermedio.",
+    tensionPoints: [
+      "Herramientas de creación para niños en vez de un feed de atención",
+      "Cada relación infantil es aprobada por un padre antes de compartir",
+      "Los videos familiares se quedan con personas de confianza, no con una audiencia pública",
+    ],
+    trustTitle: "Pruebas de confianza antes de instalar",
+    trustSubtitle: "La promesa del producto es simple y los controles son concretos.",
+    trustCards: [
+      {
+        title: "Aprobación parental en cada relación",
+        body: "Los niños no agregan seguidores al azar. Los padres deciden qué familiares y amigos entran al círculo del niño.",
+      },
+      {
+        title: "Sin audiencia pública que perseguir",
+        body: "No existe un feed público, ni ranking de creadores, ni algoritmo empujando a los niños hacia desconocidos.",
+      },
+      {
+        title: "Sin anuncios ni incentivos de rastreo",
+        body: "Tubestr no está diseñada para capturar atención. Los niños hacen videos en lugar de ser optimizados para seguir deslizando.",
+      },
+      {
+        title: "Compartir en privado desde la base",
+        body: "La identidad y el intercambio están construidos alrededor de la propiedad familiar y la entrega cifrada, no de perfiles publicitarios.",
+      },
+    ],
+    approvalTitle: "Cómo funciona la aprobación parental",
+    approvalSubtitle: "Un flujo claro desde la configuración hasta compartir.",
+    approvalSteps: [
+      {
+        title: "1. Crea un perfil infantil",
+        body: "Un padre crea la cuenta, elige el perfil del niño y comienza el círculo de confianza desde la zona parental.",
+      },
+      {
+        title: "2. Aprueba cada conexión",
+        body: "Los padres revisan con quién puede conectarse el niño antes de que exista cualquier intercambio entre familias.",
+      },
+      {
+        title: "3. Los niños crean y comparten dentro de ese círculo",
+        body: "Una vez aprobado, el niño puede publicar videos cortos para personas que la familia ya conoce y en quienes confía.",
+      },
+    ],
+    screenshotTitle: "Pantallas reales del producto, no promesas abstractas",
+    screenshotSubtitle: "Los padres pueden inspeccionar los controles. Los niños siguen teniendo una cámara y experiencia de compartir divertida.",
+    screenshotCards: [
+      {
+        title: "Zona Parental",
+        body: "Las aprobaciones de conexiones y la supervisión familiar viven en un solo lugar.",
+        image: "/images/IMG_0439.webp",
+      },
+      {
+        title: "Círculos de confianza",
+        body: "Los niños comparten con personas que sus padres permitieron explícitamente.",
+        image: "/images/IMG_4223.webp",
+      },
+      {
+        title: "Herramientas creativas",
+        body: "Los niños graban y editan en vez de perderse en un feed pasivo.",
+        image: "/images/IMG_0438.webp",
+      },
+      {
+        title: "Reproducción privada",
+        body: "Los videos compartidos son para familia y amigos, no para todo internet.",
+        image: "/images/IMG_0440.webp",
+      },
+    ],
+    compareTitle: "Dónde encaja Tubestr",
+    compareSubtitle: "Una imagen de categoría más clara para padres que están decidiendo en qué confiar.",
+    compareRows: [
+      {
+        label: "Experiencia principal",
+        values: ["Visualización y descubrimiento públicos", "Participación social con moderación", "Chat y llamadas", "Creación y compartición privada de videos"],
+      },
+      {
+        label: "Modelo de audiencia",
+        values: ["Amplio o gestionado por la plataforma", "Grafo social gestionado por la app", "Contactos conocidos", "Círculos familiares aprobados por padres"],
+      },
+      {
+        label: "Control parental",
+        values: ["Varía según el modo", "Fuerte pero en todo el producto", "Fuerte para mensajería", "Integrado en cada relación infantil"],
+      },
+      {
+        label: "Presión de negocio",
+        values: ["Atención y volumen de contenido", "Engagement y retención", "Utilidad de comunicación", "Confianza familiar y creatividad segura"],
+      },
+    ],
+    compareColumns: ["Apps públicas de video", "Apps sociales para niños", "Apps de mensajería familiar", "Tubestr"],
+    finalTitle: "Una forma más segura de dejar que los niños compartan lo que hacen.",
+    finalBody:
+      "Instala la beta si quieres una app privada de video familiar que trate la aprobación parental como una regla del producto, no como una configuración secundaria.",
+    finalPrimary: "Ir a descargas",
+    finalSecondary: "Leer la base técnica de confianza",
+  },
+} as const
 
-  const screenshots = {
-    parentDashboard: "/images/IMG_0439.webp",
-    familyConnections: "/images/IMG_4223.webp",
-    editor: "/images/IMG_0438.webp",
-    viewing: "/images/IMG_0440.webp",
-    home: "/images/IMG_0437.webp",
-  }
+export default function TubestrLanding() {
+  const { language, t } = useI18n()
+  const copy = content[language]
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 via-purple-50 to-green-50">
+    <div className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(59,130,246,0.18),_transparent_32%),linear-gradient(180deg,_#f8fbff_0%,_#eef6ff_38%,_#f7f3ea_100%)]">
       <StickyHeader />
-      {/* Hero Section */}
-      <section className="container mx-auto px-4 py-20 md:py-32">
+
+      <section className="container mx-auto px-4 pt-24 pb-18 md:pt-32 md:pb-24">
         <ScrollReveal>
-          <div className="max-w-4xl mx-auto text-center space-y-8">
-            <div className="flex justify-center gap-4 mb-6">
-              <Star className="w-10 h-10 text-yellow-400 fill-yellow-400 animate-pulse" />
-              <Sparkles className="w-12 h-12 text-purple-400 fill-purple-400 animate-bounce" />
-              <Star className="w-10 h-10 text-yellow-400 fill-yellow-400 animate-pulse" />
+          <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+            <div className="space-y-8">
+              <div className="inline-flex items-center gap-2 rounded-full border border-primary/15 bg-white/90 px-5 py-2 text-sm font-semibold text-primary shadow-lg">
+                <Shield className="h-4 w-4" />
+                <span>{copy.badge}</span>
+              </div>
+              <div className="space-y-5">
+                <h1 className="max-w-3xl text-5xl font-bold leading-[0.95] text-primary md:text-7xl font-[family-name:var(--font-display)]">
+                  {copy.title}
+                </h1>
+                <p className="max-w-2xl text-lg leading-8 text-foreground/80 md:text-2xl">{copy.subtitle}</p>
+              </div>
+              <div className="flex flex-col gap-4 sm:flex-row">
+                <Button
+                  size="lg"
+                  className="rounded-full bg-primary px-8 py-7 text-lg font-bold text-primary-foreground shadow-2xl transition-all hover:scale-[1.02] hover:bg-primary/90"
+                  asChild
+                >
+                  <Link href="/download">{copy.primaryCta}</Link>
+                </Button>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="rounded-full border-2 border-primary/20 bg-white/80 px-8 py-7 text-lg font-bold text-primary shadow-lg"
+                  asChild
+                >
+                  <Link href="#approval">{copy.secondaryCta}</Link>
+                </Button>
+              </div>
+              <div className="flex flex-wrap gap-3">
+                {copy.proof.map((item) => (
+                  <div
+                    key={item}
+                    className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/85 px-4 py-2 text-sm font-medium text-foreground/75 shadow-sm"
+                  >
+                    <Check className="h-4 w-4 text-accent" />
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </div>
             </div>
-            <h1 className="text-5xl md:text-7xl font-bold text-balance text-primary font-[family-name:var(--font-display)] leading-tight">
-              {t("hero.title")}
-            </h1>
-            <p className="text-lg md:text-2xl text-foreground/80 text-balance max-w-2xl mx-auto leading-relaxed">
-              {t("hero.subtitle")}
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8">
-              <Button
-                size="lg"
-                className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-primary-foreground rounded-full text-xl px-10 py-7 shadow-2xl hover:shadow-3xl transition-all hover:scale-105 font-bold"
-                asChild
-              >
-                <Link href="/download">
-                  {t("hero.joinBeta")} 🎉
-                </Link>
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-3 border-accent text-accent hover:bg-accent hover:text-accent-foreground rounded-full text-xl px-10 py-7 bg-white shadow-xl hover:shadow-2xl transition-all hover:scale-105 font-bold"
-              >
-                <Link href="/tech">{t("hero.learnMore")}</Link>
-              </Button>
+
+            <div className="relative">
+              <div className="absolute -inset-6 rounded-[2.5rem] bg-gradient-to-br from-primary/15 via-white to-accent/15 blur-2xl" />
+              <div className="relative overflow-hidden rounded-[2rem] border border-white/70 bg-white/85 p-4 shadow-[0_30px_80px_-40px_rgba(17,24,39,0.45)] backdrop-blur">
+                <div className="grid gap-4 md:grid-cols-[1.05fr_0.95fr]">
+                  <div className="rounded-[1.5rem] bg-slate-950 p-3">
+                    <div className="relative aspect-[9/19] overflow-hidden rounded-[1.25rem] bg-slate-900">
+                      <Image src="/images/IMG_0437.webp" alt="Tubestr home feed" fill className="object-cover" />
+                    </div>
+                  </div>
+                  <div className="flex flex-col gap-4">
+                    <Card className="border-primary/15 bg-blue-50/80 shadow-sm">
+                      <CardContent className="space-y-3 p-5">
+                        <div className="flex items-center gap-3">
+                          <Users className="h-5 w-5 text-primary" />
+                          <p className="font-semibold text-primary">
+                            {language === "en" ? "Trusted family circle" : "Círculo familiar de confianza"}
+                          </p>
+                        </div>
+                        <p className="text-sm leading-6 text-foreground/75">
+                          {language === "en"
+                            ? "Parent-approved contacts before a child ever shares."
+                            : "Contactos aprobados por padres antes de que un niño comparta."}
+                        </p>
+                      </CardContent>
+                    </Card>
+                    <Card className="border-accent/15 bg-emerald-50/80 shadow-sm">
+                      <CardContent className="space-y-3 p-5">
+                        <div className="flex items-center gap-3">
+                          <EyeOff className="h-5 w-5 text-accent" />
+                          <p className="font-semibold text-primary">
+                            {language === "en" ? "No public audience" : "Sin audiencia pública"}
+                          </p>
+                        </div>
+                        <p className="text-sm leading-6 text-foreground/75">
+                          {language === "en"
+                            ? "Kids post to real people they know, not a feed of strangers."
+                            : "Los niños publican para personas reales que conocen, no para un feed de desconocidos."}
+                        </p>
+                      </CardContent>
+                    </Card>
+                    <Card className="border-amber-200 bg-amber-50/80 shadow-sm">
+                      <CardContent className="space-y-3 p-5">
+                        <div className="flex items-center gap-3">
+                          <Sparkles className="h-5 w-5 text-amber-500" />
+                          <p className="font-semibold text-primary">
+                            {language === "en" ? "Creation first" : "Primero crear"}
+                          </p>
+                        </div>
+                        <p className="text-sm leading-6 text-foreground/75">
+                          {language === "en"
+                            ? "The camera and sharing flow encourage making, not doomscrolling."
+                            : "La cámara y el flujo de compartir fomentan crear, no deslizar sin fin."}
+                        </p>
+                      </CardContent>
+                    </Card>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </ScrollReveal>
       </section>
 
-      <div className="w-full h-16 bg-gradient-to-b from-transparent to-white/50" />
-
-      {/* What Makes Tubestr Different */}
-      <section className="container mx-auto px-4 py-20 bg-white/50 backdrop-blur">
+      <section className="container mx-auto px-4 py-10 md:py-16">
         <ScrollReveal>
-          <div className="max-w-6xl mx-auto">
-            <h2 className="text-5xl md:text-6xl font-bold text-center mb-6 text-primary font-[family-name:var(--font-display)]">
-              {t("different.title")}
-            </h2>
-            <p className="text-center text-xl text-foreground/70 mb-16 max-w-2xl mx-auto leading-relaxed">
-              {t("different.subtitle")}
-            </p>
-            <div className="grid md:grid-cols-2 gap-8">
-              <ScrollReveal delay={100}>
-                <Card className="border-3 border-primary/30 bg-gradient-to-br from-white to-blue-50 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:scale-105">
-                  <CardContent className="p-10 space-y-6">
-                    <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center shadow-xl">
-                      <Users className="w-10 h-10 text-white" />
-                    </div>
-                    <h3 className="text-3xl font-bold text-primary font-[family-name:var(--font-display)]">
-                      {t("different.connections.title")}
-                    </h3>
-                    <p className="text-foreground/80 leading-relaxed text-lg">{t("different.connections.desc")}</p>
-                  </CardContent>
-                </Card>
-              </ScrollReveal>
-
-              <ScrollReveal delay={200}>
-                <Card className="border-3 border-purple-300 bg-gradient-to-br from-white to-purple-50 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:scale-105">
-                  <CardContent className="p-10 space-y-6">
-                    <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center shadow-xl">
-                      <Key className="w-10 h-10 text-white" />
-                    </div>
-                    <h3 className="text-3xl font-bold text-primary font-[family-name:var(--font-display)]">
-                      {t("different.nostr.title")}
-                    </h3>
-                    <p className="text-foreground/80 leading-relaxed text-lg">{t("different.nostr.desc")}</p>
-                  </CardContent>
-                </Card>
-              </ScrollReveal>
-
-              <ScrollReveal delay={300}>
-                <Card className="border-3 border-accent/30 bg-gradient-to-br from-white to-green-50 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:scale-105">
-                  <CardContent className="p-10 space-y-6">
-                    <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center shadow-xl">
-                      <Shield className="w-10 h-10 text-white" />
-                    </div>
-                    <h3 className="text-3xl font-bold text-primary font-[family-name:var(--font-display)]">
-                      {t("different.noAds.title")}
-                    </h3>
-                    <p className="text-foreground/80 leading-relaxed text-lg">{t("different.noAds.desc")}</p>
-                  </CardContent>
-                </Card>
-              </ScrollReveal>
-
-              <ScrollReveal delay={400}>
-                <Card className="border-3 border-yellow-300 bg-gradient-to-br from-white to-yellow-50 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:scale-105">
-                  <CardContent className="p-10 space-y-6">
-                    <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center shadow-xl">
-                      <Lock className="w-10 h-10 text-white" />
-                    </div>
-                    <h3 className="text-3xl font-bold text-primary font-[family-name:var(--font-display)]">
-                      {t("different.storage.title")}
-                    </h3>
-                    <p className="text-foreground/80 leading-relaxed text-lg">{t("different.storage.desc")}</p>
-                  </CardContent>
-                </Card>
-              </ScrollReveal>
+          <div className="mx-auto grid max-w-6xl gap-10 rounded-[2.5rem] border border-slate-200/70 bg-white/75 p-8 shadow-xl backdrop-blur md:grid-cols-[0.95fr_1.05fr] md:p-12">
+            <div className="space-y-5">
+              <p className="text-sm font-semibold uppercase tracking-[0.24em] text-primary/70">
+                {language === "en" ? "Parent job to be done" : "Trabajo real para padres"}
+              </p>
+              <h2 className="text-4xl font-bold text-primary md:text-5xl font-[family-name:var(--font-display)]">
+                {copy.tensionTitle}
+              </h2>
+              <p className="text-lg leading-8 text-foreground/75">{copy.tensionBody}</p>
+            </div>
+            <div className="space-y-4">
+              {copy.tensionPoints.map((point) => (
+                <div key={point} className="flex gap-4 rounded-[1.5rem] bg-slate-50 px-5 py-5">
+                  <div className="mt-1 rounded-full bg-primary p-2 text-white">
+                    <ArrowRight className="h-4 w-4" />
+                  </div>
+                  <p className="text-base leading-7 text-foreground/80">{point}</p>
+                </div>
+              ))}
             </div>
           </div>
         </ScrollReveal>
       </section>
 
-      <div className="w-full h-16 bg-gradient-to-b from-white/50 to-transparent" />
-
-      {/* App Screenshots Section */}
-      <section className="container mx-auto px-4 py-20">
+      <section className="container mx-auto px-4 py-14 md:py-20">
         <ScrollReveal>
-          <div className="max-w-7xl mx-auto">
-            <h2 className="text-5xl md:text-6xl font-bold text-center mb-6 text-primary font-[family-name:var(--font-display)]">
-              {t("screenshots.title")}
-            </h2>
-            <p className="text-center text-xl text-foreground/70 mb-16 leading-relaxed">{t("screenshots.subtitle")}</p>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-              <ScrollReveal delay={100}>
-                <div className="bg-gradient-to-br from-white to-blue-50 rounded-3xl p-8 shadow-2xl border-3 border-primary/20 hover:shadow-3xl transition-all duration-300 hover:-translate-y-3 hover:scale-105">
-                  <div className="relative aspect-[19/9] rounded-3xl overflow-hidden shadow-2xl mb-6 bg-gray-100 border-4 border-gray-800">
-                    <Image
-                      src={screenshots.parentDashboard || "/placeholder.svg"}
-                      alt={t("screenshots.parentDashboard")}
-                      fill
-                      className="object-contain"
-                    />
-                  </div>
-                  <h3 className="text-xl font-bold text-primary text-center font-[family-name:var(--font-display)] mb-2">
-                    {t("screenshots.parentDashboard")}
-                  </h3>
-                  <p className="text-sm text-foreground/70 text-center leading-relaxed">
-                    {t("screenshots.parentDashboard.desc")}
-                  </p>
-                </div>
-              </ScrollReveal>
-
-              <ScrollReveal delay={200}>
-                <div className="bg-gradient-to-br from-white to-purple-50 rounded-3xl p-8 shadow-2xl border-3 border-purple-200 hover:shadow-3xl transition-all duration-300 hover:-translate-y-3 hover:scale-105">
-                  <div className="relative aspect-[19/9] rounded-3xl overflow-hidden shadow-2xl mb-6 bg-gray-100 border-4 border-gray-800">
-                    <Image
-                      src={screenshots.familyConnections || "/placeholder.svg"}
-                      alt={t("screenshots.familyConnections")}
-                      fill
-                      className="object-contain"
-                    />
-                  </div>
-                  <h3 className="text-xl font-bold text-primary text-center font-[family-name:var(--font-display)] mb-2">
-                    {t("screenshots.familyConnections")}
-                  </h3>
-                  <p className="text-sm text-foreground/70 text-center leading-relaxed">
-                    {t("screenshots.familyConnections.desc")}
-                  </p>
-                </div>
-              </ScrollReveal>
-
-              <ScrollReveal delay={300}>
-                <div className="bg-gradient-to-br from-white to-green-50 rounded-3xl p-8 shadow-2xl border-3 border-accent/20 hover:shadow-3xl transition-all duration-300 hover:-translate-y-3 hover:scale-105">
-                  <div className="relative aspect-[19/9] rounded-3xl overflow-hidden shadow-2xl mb-6 bg-gray-100 border-4 border-gray-800">
-                    <Image
-                      src={screenshots.editor || "/placeholder.svg"}
-                      alt={t("screenshots.creativeEditor")}
-                      fill
-                      className="object-contain"
-                    />
-                  </div>
-                  <h3 className="text-xl font-bold text-primary text-center font-[family-name:var(--font-display)] mb-2">
-                    {t("screenshots.creativeEditor")}
-                  </h3>
-                  <p className="text-sm text-foreground/70 text-center leading-relaxed">
-                    {t("screenshots.creativeEditor.desc")}
-                  </p>
-                </div>
-              </ScrollReveal>
-
-              <ScrollReveal delay={400}>
-                <div className="bg-gradient-to-br from-white to-yellow-50 rounded-3xl p-8 shadow-2xl border-3 border-yellow-200 hover:shadow-3xl transition-all duration-300 hover:-translate-y-3 hover:scale-105">
-                  <div className="relative aspect-[19/9] rounded-3xl overflow-hidden shadow-2xl mb-6 bg-gray-100 border-4 border-gray-800">
-                    <Image
-                      src={screenshots.viewing || "/placeholder.svg"}
-                      alt={t("screenshots.safeSharing")}
-                      fill
-                      className="object-contain"
-                    />
-                  </div>
-                  <h3 className="text-xl font-bold text-primary text-center font-[family-name:var(--font-display)] mb-2">
-                    {t("screenshots.safeSharing")}
-                  </h3>
-                  <p className="text-sm text-foreground/70 text-center leading-relaxed">
-                    {t("screenshots.safeSharing.desc")}
-                  </p>
-                </div>
-              </ScrollReveal>
+          <div className="mx-auto max-w-6xl space-y-6">
+            <div className="max-w-3xl space-y-4">
+              <h2 className="text-4xl font-bold text-primary md:text-5xl font-[family-name:var(--font-display)]">
+                {copy.trustTitle}
+              </h2>
+              <p className="text-lg leading-8 text-foreground/75">{copy.trustSubtitle}</p>
+            </div>
+            <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+              {copy.trustCards.map((card, index) => {
+                const icon = [Users, EyeOff, Shield, KeyRound][index]
+                const Icon = icon
+                return (
+                  <Card key={card.title} className="border-white/60 bg-white/85 shadow-lg">
+                    <CardContent className="space-y-4 p-7">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                        <Icon className="h-6 w-6" />
+                      </div>
+                      <h3 className="text-2xl font-bold text-primary font-[family-name:var(--font-display)]">
+                        {card.title}
+                      </h3>
+                      <p className="text-base leading-7 text-foreground/75">{card.body}</p>
+                    </CardContent>
+                  </Card>
+                )
+              })}
             </div>
           </div>
         </ScrollReveal>
       </section>
 
-      {/* How It Works */}
-      <section className="container mx-auto px-4 py-20 bg-gradient-to-br from-white/80 to-purple-100/50 backdrop-blur rounded-[3rem] my-12 shadow-xl">
+      <section id="approval" className="container mx-auto px-4 py-14 md:py-20">
         <ScrollReveal>
-          <div className="max-w-5xl mx-auto">
-            <h2 className="text-5xl md:text-6xl font-bold text-center mb-6 text-primary font-[family-name:var(--font-display)]">
-              {t("howItWorks.title")}
-            </h2>
-            <p className="text-center text-xl text-foreground/70 mb-16 leading-relaxed">{t("howItWorks.subtitle")}</p>
-            <div className="grid md:grid-cols-3 gap-12">
-              <ScrollReveal delay={100}>
-                <div className="text-center space-y-6">
-                  <div className="w-24 h-24 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 text-white flex items-center justify-center text-4xl font-bold mx-auto shadow-2xl animate-pulse">
-                    1
-                  </div>
-                  <h3 className="text-3xl font-bold text-primary font-[family-name:var(--font-display)]">
-                    {t("howItWorks.create.title")}
-                  </h3>
-                  <p className="text-foreground/80 leading-relaxed text-lg">{t("howItWorks.create.desc")}</p>
-                  <Smile className="w-10 h-10 text-yellow-500 mx-auto" />
-                </div>
-              </ScrollReveal>
-
-              <ScrollReveal delay={200}>
-                <div className="text-center space-y-6">
-                  <div className="w-24 h-24 rounded-full bg-gradient-to-br from-purple-400 to-purple-600 text-white flex items-center justify-center text-4xl font-bold mx-auto shadow-2xl animate-pulse">
-                    2
-                  </div>
-                  <h3 className="text-3xl font-bold text-primary font-[family-name:var(--font-display)]">
-                    {t("howItWorks.approve.title")}
-                  </h3>
-                  <p className="text-foreground/80 leading-relaxed text-lg">{t("howItWorks.approve.desc")}</p>
-                  <Heart className="w-10 h-10 text-pink-500 mx-auto fill-pink-500" />
-                </div>
-              </ScrollReveal>
-
-              <ScrollReveal delay={300}>
-                <div className="text-center space-y-6">
-                  <div className="w-24 h-24 rounded-full bg-gradient-to-br from-green-400 to-green-600 text-white flex items-center justify-center text-4xl font-bold mx-auto shadow-2xl animate-pulse">
-                    3
-                  </div>
-                  <h3 className="text-3xl font-bold text-primary font-[family-name:var(--font-display)]">
-                    {t("howItWorks.share.title")}
-                  </h3>
-                  <p className="text-foreground/80 leading-relaxed text-lg">{t("howItWorks.share.desc")}</p>
-                  <Zap className="w-10 h-10 text-green-500 mx-auto" />
-                </div>
-              </ScrollReveal>
+          <div className="mx-auto max-w-6xl rounded-[2.5rem] bg-[linear-gradient(135deg,_rgba(37,99,235,0.08),_rgba(255,255,255,0.92)_35%,_rgba(16,185,129,0.08))] p-8 shadow-xl md:p-12">
+            <div className="max-w-3xl space-y-4">
+              <h2 className="text-4xl font-bold text-primary md:text-5xl font-[family-name:var(--font-display)]">
+                {copy.approvalTitle}
+              </h2>
+              <p className="text-lg leading-8 text-foreground/75">{copy.approvalSubtitle}</p>
+            </div>
+            <div className="mt-10 grid gap-5 md:grid-cols-3">
+              {copy.approvalSteps.map((step, index) => (
+                <Card key={step.title} className="border-white/70 bg-white/90 shadow-lg">
+                  <CardContent className="space-y-5 p-7">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary text-lg font-bold text-white shadow-lg">
+                      {index + 1}
+                    </div>
+                    <h3 className="text-2xl font-bold text-primary font-[family-name:var(--font-display)]">
+                      {step.title}
+                    </h3>
+                    <p className="text-base leading-7 text-foreground/75">{step.body}</p>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
           </div>
         </ScrollReveal>
       </section>
 
-      {/* For Parents */}
-      <section className="container mx-auto px-4 py-20">
+      <section className="container mx-auto px-4 py-14 md:py-20">
         <ScrollReveal>
-          <div className="max-w-6xl mx-auto">
-            <div className="grid md:grid-cols-2 gap-16 items-center">
-              <div className="space-y-8">
-                <div className="inline-block px-6 py-3 bg-primary/10 rounded-full text-primary font-bold mb-4 text-lg shadow-md">
-                  {t("forParents.badge")}
+          <div className="mx-auto max-w-6xl space-y-6">
+            <div className="max-w-3xl space-y-4">
+              <h2 className="text-4xl font-bold text-primary md:text-5xl font-[family-name:var(--font-display)]">
+                {copy.screenshotTitle}
+              </h2>
+              <p className="text-lg leading-8 text-foreground/75">{copy.screenshotSubtitle}</p>
+            </div>
+            <div className="grid gap-6 lg:grid-cols-2 xl:grid-cols-4">
+              {copy.screenshotCards.map((card) => (
+                <Card key={card.title} className="overflow-hidden border-white/60 bg-white/88 shadow-lg">
+                  <div className="relative aspect-[9/19] bg-slate-950 p-3">
+                    <div className="relative h-full overflow-hidden rounded-[1.5rem]">
+                      <Image src={card.image} alt={card.title} fill className="object-cover" />
+                    </div>
+                  </div>
+                  <CardContent className="space-y-3 p-6">
+                    <h3 className="text-2xl font-bold text-primary font-[family-name:var(--font-display)]">
+                      {card.title}
+                    </h3>
+                    <p className="text-base leading-7 text-foreground/75">{card.body}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </ScrollReveal>
+      </section>
+
+      <section className="container mx-auto px-4 py-14 md:py-20">
+        <ScrollReveal>
+          <div className="mx-auto max-w-6xl space-y-6 rounded-[2.5rem] border border-slate-200/70 bg-white/80 p-8 shadow-xl md:p-12">
+            <div className="max-w-3xl space-y-4">
+              <h2 className="text-4xl font-bold text-primary md:text-5xl font-[family-name:var(--font-display)]">
+                {copy.compareTitle}
+              </h2>
+              <p className="text-lg leading-8 text-foreground/75">{copy.compareSubtitle}</p>
+            </div>
+            <div className="overflow-hidden rounded-[2rem] border border-slate-200">
+              <div className="grid grid-cols-2 bg-slate-100 text-sm font-semibold text-primary md:grid-cols-5">
+                <div className="border-b border-slate-200 px-4 py-4 md:px-6">
+                  {language === "en" ? "Dimension" : "Dimensión"}
                 </div>
-                <h2 className="text-5xl md:text-6xl font-bold text-primary font-[family-name:var(--font-display)] leading-tight">
-                  {t("forParents.title")}
+                {copy.compareColumns.map((column) => (
+                  <div key={column} className="border-b border-l border-slate-200 px-4 py-4 md:px-6">
+                    {column}
+                  </div>
+                ))}
+              </div>
+              {copy.compareRows.map((row, rowIndex) => (
+                <div key={row.label} className="grid grid-cols-2 bg-white md:grid-cols-5">
+                  <div
+                    className={`px-4 py-5 text-sm font-semibold text-primary md:px-6 ${
+                      rowIndex < copy.compareRows.length - 1 ? "border-b border-slate-200" : ""
+                    }`}
+                  >
+                    {row.label}
+                  </div>
+                  {row.values.map((value, valueIndex) => (
+                    <div
+                      key={`${row.label}-${valueIndex}`}
+                      className={`border-l border-slate-200 px-4 py-5 text-sm leading-6 text-foreground/75 md:px-6 ${
+                        rowIndex < copy.compareRows.length - 1 ? "border-b border-slate-200" : ""
+                      } ${valueIndex === 3 ? "bg-emerald-50/70 font-medium text-foreground/90" : ""}`}
+                    >
+                      {value}
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </div>
+        </ScrollReveal>
+      </section>
+
+      <section className="container mx-auto px-4 py-16 md:py-24">
+        <ScrollReveal>
+          <div className="mx-auto max-w-5xl rounded-[2.75rem] bg-[linear-gradient(135deg,_#1d4ed8,_#0f766e_110%)] p-10 text-white shadow-[0_40px_90px_-35px_rgba(29,78,216,0.7)] md:p-14">
+            <div className="grid gap-8 md:grid-cols-[1fr_auto] md:items-end">
+              <div className="space-y-5">
+                <h2 className="text-4xl font-bold leading-tight md:text-5xl font-[family-name:var(--font-display)]">
+                  {copy.finalTitle}
                 </h2>
-                <p className="text-xl text-foreground/80 leading-relaxed">{t("forParents.desc")}</p>
-                <ul className="space-y-6">
-                  <li className="flex items-start gap-4">
-                    <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center flex-shrink-0 mt-1 shadow-lg">
-                      <Check className="w-5 h-5 text-white" />
-                    </div>
-                    <span className="text-foreground/80 text-xl leading-relaxed">{t("forParents.check1")}</span>
-                  </li>
-                  <li className="flex items-start gap-4">
-                    <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center flex-shrink-0 mt-1 shadow-lg">
-                      <Check className="w-5 h-5 text-white" />
-                    </div>
-                    <span className="text-foreground/80 text-xl leading-relaxed">{t("forParents.check2")}</span>
-                  </li>
-                  <li className="flex items-start gap-4">
-                    <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center flex-shrink-0 mt-1 shadow-lg">
-                      <Check className="w-5 h-5 text-white" />
-                    </div>
-                    <span className="text-foreground/80 text-xl leading-relaxed">{t("forParents.check3")}</span>
-                  </li>
-                  <li className="flex items-start gap-4">
-                    <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center flex-shrink-0 mt-1 shadow-lg">
-                      <Check className="w-5 h-5 text-white" />
-                    </div>
-                    <span className="text-foreground/80 text-xl leading-relaxed">{t("forParents.check4")}</span>
-                  </li>
-                </ul>
+                <p className="max-w-3xl text-lg leading-8 text-white/90">{copy.finalBody}</p>
               </div>
-              <div className="bg-gradient-to-br from-white to-blue-50 rounded-[3rem] p-10 shadow-2xl border-3 border-primary/30 hover:shadow-3xl transition-all hover:-translate-y-2">
-                <div className="relative aspect-[19/9] rounded-3xl overflow-hidden shadow-2xl bg-gray-100 border-4 border-gray-800">
-                  <Image
-                    src={screenshots.parentDashboard || "/placeholder.svg"}
-                    alt={t("forParents.imageCaption")}
-                    fill
-                    className="object-contain"
-                  />
-                </div>
-                <p className="text-center text-base text-foreground/60 mt-6 font-semibold">
-                  {t("forParents.imageCaption")}
-                </p>
+              <div className="flex flex-col gap-4 sm:flex-row md:flex-col">
+                <Button
+                  size="lg"
+                  className="rounded-full bg-white px-8 py-7 text-base font-bold text-primary shadow-xl hover:bg-white/90"
+                  asChild
+                >
+                  <Link href="/download">{copy.finalPrimary}</Link>
+                </Button>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="rounded-full border-2 border-white/40 bg-transparent px-8 py-7 text-base font-bold text-white hover:bg-white/10"
+                  asChild
+                >
+                  <Link href="/tech">{copy.finalSecondary}</Link>
+                </Button>
               </div>
             </div>
           </div>
         </ScrollReveal>
       </section>
 
-      {/* For Kids */}
-      <section className="container mx-auto px-4 py-20 bg-gradient-to-br from-green-100 to-blue-100 rounded-[3rem] my-12 shadow-xl">
-        <ScrollReveal>
-          <div className="max-w-6xl mx-auto">
-            <div className="grid md:grid-cols-2 gap-16 items-center">
-              <div className="order-2 md:order-1 bg-gradient-to-br from-white to-green-50 rounded-[3rem] p-10 shadow-2xl border-3 border-accent/30 hover:shadow-3xl transition-all hover:-translate-y-2">
-                <div className="relative aspect-[19/9] rounded-3xl overflow-hidden shadow-2xl bg-gray-100 border-4 border-gray-800">
-                  <Image
-                    src={screenshots.home || "/placeholder.svg"}
-                    alt={t("forKids.imageCaption")}
-                    fill
-                    className="object-contain"
-                  />
-                </div>
-                <p className="text-center text-base text-foreground/60 mt-6 font-semibold">
-                  {t("forKids.imageCaption")}
-                </p>
-              </div>
-              <div className="space-y-8 order-1 md:order-2">
-                <div className="inline-block px-6 py-3 bg-accent/10 rounded-full text-accent font-bold mb-4 text-lg shadow-md">
-                  {t("forKids.badge")}
-                </div>
-                <h2 className="text-5xl md:text-6xl font-bold text-primary font-[family-name:var(--font-display)] leading-tight">
-                  {t("forKids.title")}
-                </h2>
-                <p className="text-xl text-foreground/80 leading-relaxed">{t("forKids.desc")}</p>
-                <ul className="space-y-6">
-                  <li className="flex items-start gap-4">
-                    <Sparkles className="w-8 h-8 text-accent mt-1 flex-shrink-0" />
-                    <span className="text-foreground/80 text-xl leading-relaxed">{t("forKids.feature1")}</span>
-                  </li>
-                  <li className="flex items-start gap-4">
-                    <Sparkles className="w-8 h-8 text-accent mt-1 flex-shrink-0" />
-                    <span className="text-foreground/80 text-xl leading-relaxed">{t("forKids.feature2")}</span>
-                  </li>
-                  <li className="flex items-start gap-4">
-                    <Sparkles className="w-8 h-8 text-accent mt-1 flex-shrink-0" />
-                    <span className="text-foreground/80 text-xl leading-relaxed">{t("forKids.feature3")}</span>
-                  </li>
-                  <li className="flex items-start gap-4">
-                    <Sparkles className="w-8 h-8 text-accent mt-1 flex-shrink-0" />
-                    <span className="text-foreground/80 text-xl leading-relaxed">{t("forKids.feature4")}</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </ScrollReveal>
-      </section>
-
-      {/* Built on Nostr */}
-      <section className="container mx-auto px-4 py-20">
-        <ScrollReveal>
-          <div className="max-w-4xl mx-auto text-center space-y-10">
-            <div className="w-28 h-28 rounded-[2rem] bg-gradient-to-br from-primary via-purple-500 to-accent flex items-center justify-center mx-auto shadow-2xl animate-pulse">
-              <Key className="w-14 h-14 text-white" />
-            </div>
-            <h2 className="text-5xl md:text-6xl font-bold text-primary font-[family-name:var(--font-display)] leading-tight">
-              {t("nostr.title")}
-            </h2>
-            <p className="text-xl text-foreground/80 leading-relaxed max-w-3xl mx-auto">{t("nostr.desc")}</p>
-            <div className="grid sm:grid-cols-3 gap-8 pt-12">
-              <ScrollReveal delay={100}>
-                <div className="space-y-4 bg-gradient-to-br from-white to-blue-50 rounded-3xl p-8 shadow-2xl border-3 border-primary/20 hover:shadow-3xl transition-all hover:-translate-y-2">
-                  <div className="text-6xl font-bold text-primary font-[family-name:var(--font-display)]">
-                    {t("nostr.stat1")}
-                  </div>
-                  <div className="text-lg text-foreground/70 font-semibold">{t("nostr.stat1.label")}</div>
-                </div>
-              </ScrollReveal>
-              <ScrollReveal delay={200}>
-                <div className="space-y-4 bg-gradient-to-br from-white to-purple-50 rounded-3xl p-8 shadow-2xl border-3 border-purple-200 hover:shadow-3xl transition-all hover:-translate-y-2">
-                  <div className="text-6xl font-bold text-accent font-[family-name:var(--font-display)]">
-                    {t("nostr.stat2")}
-                  </div>
-                  <div className="text-lg text-foreground/70 font-semibold">{t("nostr.stat2.label")}</div>
-                </div>
-              </ScrollReveal>
-              <ScrollReveal delay={300}>
-                <div className="space-y-4 bg-gradient-to-br from-white to-yellow-50 rounded-3xl p-8 shadow-2xl border-3 border-yellow-200 hover:shadow-3xl transition-all hover:-translate-y-2">
-                  <div className="text-6xl font-bold text-purple-600 font-[family-name:var(--font-display)]">
-                    {t("nostr.stat3")}
-                  </div>
-                  <div className="text-lg text-foreground/70 font-semibold">{t("nostr.stat3.label")}</div>
-                </div>
-              </ScrollReveal>
-            </div>
-          </div>
-        </ScrollReveal>
-      </section>
-
-      {/* Storage Options */}
-      <section className="container mx-auto px-4 py-20 bg-gradient-to-br from-white/80 to-blue-100/50 backdrop-blur rounded-[3rem] my-12 shadow-xl">
-        <ScrollReveal>
-          <div className="max-w-5xl mx-auto">
-            <h2 className="text-5xl md:text-6xl font-bold text-center mb-6 text-primary font-[family-name:var(--font-display)]">
-              {t("storage.title")}
-            </h2>
-            <p className="text-center text-xl text-foreground/70 mb-16 leading-relaxed">{t("storage.subtitle")}</p>
-            <div className="grid md:grid-cols-2 gap-10">
-              <ScrollReveal delay={100}>
-                <Card className="border-4 border-primary/40 bg-gradient-to-br from-white to-blue-50 shadow-2xl hover:shadow-3xl transition-all duration-300 hover:-translate-y-2 hover:scale-105">
-                  <CardContent className="p-10 space-y-6">
-                    <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center shadow-xl">
-                      <Cloud className="w-10 h-10 text-white" />
-                    </div>
-                    <h3 className="text-4xl font-bold text-primary font-[family-name:var(--font-display)]">
-                      {t("storage.private.title")}
-                    </h3>
-                    <p className="text-accent text-2xl font-bold">{t("storage.private.price")}</p>
-                    <p className="text-foreground/80 leading-relaxed text-lg">{t("storage.private.desc")}</p>
-                    <ul className="space-y-4 pt-6">
-                      <li className="flex items-start gap-4">
-                        <Check className="w-6 h-6 text-primary mt-0.5 flex-shrink-0" />
-                        <span className="text-foreground/80 text-lg">{t("storage.private.feature1")}</span>
-                      </li>
-                      <li className="flex items-start gap-4">
-                        <Check className="w-6 h-6 text-primary mt-0.5 flex-shrink-0" />
-                        <span className="text-foreground/80 text-lg">{t("storage.private.feature2")}</span>
-                      </li>
-                      <li className="flex items-start gap-4">
-                        <Check className="w-6 h-6 text-primary mt-0.5 flex-shrink-0" />
-                        <span className="text-foreground/80 text-lg">{t("storage.private.feature3")}</span>
-                      </li>
-                    </ul>
-                  </CardContent>
-                </Card>
-              </ScrollReveal>
-
-              <ScrollReveal delay={200}>
-                <Card className="border-4 border-accent/40 bg-gradient-to-br from-white to-green-50 shadow-2xl hover:shadow-3xl transition-all duration-300 hover:-translate-y-2 hover:scale-105">
-                  <CardContent className="p-10 space-y-6">
-                    <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center shadow-xl">
-                      <Lock className="w-10 h-10 text-white" />
-                    </div>
-                    <h3 className="text-4xl font-bold text-primary font-[family-name:var(--font-display)]">
-                      {t("storage.managed.title")}
-                    </h3>
-                    <p className="text-primary text-2xl font-bold">{t("storage.managed.price")}</p>
-                    <p className="text-foreground/80 leading-relaxed text-lg">{t("storage.managed.desc")}</p>
-                    <ul className="space-y-4 pt-6">
-                      <li className="flex items-start gap-4">
-                        <Check className="w-6 h-6 text-accent mt-0.5 flex-shrink-0" />
-                        <span className="text-foreground/80 text-lg">{t("storage.managed.feature1")}</span>
-                      </li>
-                      <li className="flex items-start gap-4">
-                        <Check className="w-6 h-6 text-accent mt-0.5 flex-shrink-0" />
-                        <span className="text-foreground/80 text-lg">{t("storage.managed.feature2")}</span>
-                      </li>
-                      <li className="flex items-start gap-4">
-                        <Check className="w-6 h-6 text-accent mt-0.5 flex-shrink-0" />
-                        <span className="text-foreground/80 text-lg">{t("storage.managed.feature3")}</span>
-                      </li>
-                    </ul>
-                  </CardContent>
-                </Card>
-              </ScrollReveal>
-            </div>
-          </div>
-        </ScrollReveal>
-      </section>
-
-      {/* Join the Movement */}
-      <section className="container mx-auto px-4 py-20 bg-gradient-to-br from-primary via-purple-600 to-accent text-white rounded-[3rem] my-12 shadow-3xl">
-        <ScrollReveal>
-          <div className="max-w-3xl mx-auto text-center space-y-10">
-            <div className="flex justify-center gap-4">
-              <Heart className="w-14 h-14 text-white fill-white/30 animate-pulse" />
-              <Star className="w-14 h-14 text-yellow-300 fill-yellow-300 animate-bounce" />
-              <Heart className="w-14 h-14 text-white fill-white/30 animate-pulse" />
-            </div>
-            <h2 className="text-5xl md:text-7xl font-bold text-balance font-[family-name:var(--font-display)] leading-tight">
-              {t("join.title")}
-            </h2>
-            <p className="text-xl md:text-3xl text-white/95 text-balance leading-relaxed">{t("join.desc")}</p>
-            <div className="flex flex-col sm:flex-row gap-6 justify-center pt-8">
-              <Button
-                size="lg"
-                className="bg-white text-primary hover:bg-white/90 rounded-full text-xl px-12 py-8 shadow-2xl hover:shadow-3xl transition-all font-bold hover:scale-110"
-                asChild
-              >
-                <Link href="/download">
-                  {t("join.beta")} 🚀
-                </Link>
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-3 border-white text-white hover:bg-white/20 rounded-full text-xl px-12 py-8 bg-transparent font-bold hover:scale-110 transition-all shadow-xl"
-              >
-                <Link href="/tech">{t("join.nostr")}</Link>
-              </Button>
-            </div>
-          </div>
-        </ScrollReveal>
-      </section>
-
-      {/* Footer */}
       <footer className="container mx-auto px-4 py-16 text-center text-foreground/60">
-        <div className="flex justify-center gap-2 mb-6">
-          <Heart className="w-6 h-6 text-pink-500 fill-pink-500 animate-pulse" />
-        </div>
         <p className="text-lg font-bold">{t("footer.copyright")}</p>
         <p className="mt-3 text-base">{t("footer.tagline")}</p>
       </footer>
