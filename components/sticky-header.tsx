@@ -38,6 +38,12 @@ export function StickyHeader() {
         </div>
         <div className="flex items-center gap-2 md:gap-4">
           <Link
+            href="/how-it-works"
+            className="hidden sm:flex items-center gap-1.5 text-sm font-medium text-foreground/65 hover:text-primary transition-colors"
+          >
+            <span>{language === "en" ? "How it works" : "Cómo funciona"}</span>
+          </Link>
+          <Link
             href="/support"
             className="hidden sm:flex items-center gap-1.5 text-sm font-medium text-foreground/65 hover:text-primary transition-colors"
           >

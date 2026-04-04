@@ -363,7 +363,7 @@ export default function TubestrLanding() {
                   className="rounded-full border-2 border-primary/20 bg-white/80 px-8 py-7 text-lg font-bold text-primary shadow-lg"
                   asChild
                 >
-                  <Link href="#approval">{copy.secondaryCta}</Link>
+                  <Link href="/how-it-works">{copy.secondaryCta}</Link>
                 </Button>
               </div>
               <div className="flex flex-wrap gap-3">
